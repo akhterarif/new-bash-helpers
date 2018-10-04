@@ -1,0 +1,6 @@
+.DS_Store
+.ropeproject
+local_settings.py
+*.pyc
+/__pycache__
+__pycache__/
