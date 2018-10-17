@@ -64,6 +64,17 @@ gitCheckout() {
     gitResetHard
 }
 
+gitAddCommitPush() {
+    funcName=$(getFunctionName)
+    if [ -z "$1" ]; then
+        echo "null value not allowed as first parameter for method: \"${funcName}\"! You must pass the required parameter(s)."
+        return $1
+    fi;
+    git add .
+    git commit -am $1
+    git push
+}
+
 alias git_install=gitInstall
 alias get_ssh='cat ~/.ssh/id_rsa.pub | xclip -sel clip'
 alias git_a='git add '
@@ -83,6 +94,7 @@ alias git_rl='git_f && git reflog'
 alias git_s='git_f && git status'
 alias git_set_name="git config --global user.name '$SYSTEM_USER_FULL_NAME'"
 alias git_set_email="git config --global user.email '$SYSTEM_USER_EMAIL'"
+alias git_acp=gitAddCommitPush
 alias github_auth='printf "yes\n" | ssh -T git@github.com'
 alias github_keyscan_non_sudo="ssh-keyscan -t rsa github.com >> $SYSTEM_ROOT_FOLDER/.ssh/known_hosts"
 alias github_keyscan_sudo='ssh-keyscan -t rsa github.com >> /root/.ssh/known_hosts'
